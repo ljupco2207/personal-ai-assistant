@@ -1,0 +1,23 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local conversation data
+conversation.json
+data/conversation.json
+
+# macOS
+.DS_Store
+
+# IDE local settings
+.vscode/*
+!.vscode/extensions.json

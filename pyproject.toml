@@ -7,7 +7,10 @@ authors = [
     { name = "Ljupcho Gjorgjiev", email = "ljupcho@musicmakesusfeels.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "httpx>=0.28.1",
+    "python-dotenv>=1.2.4",
+]
 
 [project.scripts]
 personal-ai-assistant = "personal_ai_assistant:main"
@@ -15,3 +18,17 @@ personal-ai-assistant = "personal_ai_assistant:main"
 [build-system]
 requires = ["uv_build>=0.13.7,<0.14.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.5.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+asyncio_default_test_loop_scope = "function"
