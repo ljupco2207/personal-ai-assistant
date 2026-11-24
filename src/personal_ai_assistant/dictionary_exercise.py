@@ -12,7 +12,6 @@ api_response = {
 }
 
 print(f"Model name: {api_response['model']}")
-
 print(f"Assistant content: {api_response['message']['content']}")
 
 total = (

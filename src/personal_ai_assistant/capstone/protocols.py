@@ -1,14 +1,20 @@
 from typing import Protocol
 from .models import Message, AssistantResponse
-
+from collections.abc import AsyncIterator
 
 class LLMProvider(Protocol):
+
     async def generate(
         self,
-        messages: list[Message]
+        messages: list[Message],
     ) -> AssistantResponse:
         ...
 
+    def stream(
+        self,
+        messages: list[Message],
+    ) -> AsyncIterator[str]:
+        ...
 
 class ConversationStorage(Protocol):
     async def save(

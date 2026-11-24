@@ -8,7 +8,6 @@ from personal_ai_assistant.capstone.models import (
 )
 from personal_ai_assistant.capstone.service import AssistantService
 
-
 @pytest.mark.asyncio
 async def test_send_message_success():
     # Arrange
