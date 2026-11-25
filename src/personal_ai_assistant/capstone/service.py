@@ -8,10 +8,12 @@ class AssistantService:
     def __init__(
         self,
         provider: LLMProvider,
-        storage: ConversationStorage
+        storage: ConversationStorage,
+        system_prompt: str | None = None,
     ):
         self.provider = provider
         self.storage = storage
+        self.system_prompt = system_prompt
 
     async def send_message(self, content: str) -> AssistantResponse:
         if not content.strip():
@@ -26,8 +28,21 @@ class AssistantService:
 
         messages = [*history, user_message]
 
+        messages = [*history, user_message]
+
+        provider_messages = messages
+
+        if self.system_prompt:
+            provider_messages = [
+                Message(
+                    role=Role.SYSTEM,
+                    content=self.system_prompt,
+                ),
+                *messages,
+            ]
+
         try: 
-            response = await self.provider.generate(messages)
+            response = await self.provider.generate(provider_messages)
         except ProviderError:
             raise
 
